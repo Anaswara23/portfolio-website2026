@@ -1,0 +1,223 @@
+/* Professional Light Timeline (Replaces Dark Mode) */
+/* Scoped to the timeline container to avoid conflicts if classes remain */
+:root {
+    --timeline-bg: #F8F9FA;
+    --timeline-card-bg: #FFFFFF;
+    --timeline-border: #E5E7EB;
+    --timeline-text: #111;
+    --timeline-text-muted: #555;
+    --timeline-accent: #8B5CF6;
+    /* Purple matching project section */
+}
+
+/* Container */
+.timeline-dark {
+    /* Keeping class name for HTML compatibility, but styling is LIGHT */
+    max-width: 900px;
+    /* Reduced width */
+    margin: 0 auto;
+    position: relative;
+    padding-left: 40px;
+    padding-bottom: 60px;
+}
+
+/* Vertical Line */
+.timeline-dark::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    /* Centered with 40px logo */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #E5E7EB;
+}
+
+.timeline-row {
+    position: relative;
+    margin-bottom: 40px;
+    /* Tighter spacing */
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Logo */
+.timeline-logo {
+    position: absolute;
+    left: -21px;
+    /* Center on line */
+    width: 40px;
+    /* Smaller logo */
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.timeline-logo img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Card */
+.timeline-card {
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    margin-left: 50px;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    min-height: 180px;
+    /* More compact */
+}
+
+.timeline-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+    border-color: #D1D5DB;
+}
+
+/* Content */
+.card-content {
+    padding: 24px;
+    flex: 1.4;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-date {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--timeline-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.card-role {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--timeline-text);
+    line-height: 1.3;
+}
+
+.card-company {
+    color: var(--timeline-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.card-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card-bullets li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 6px;
+    color: #4B5563;
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+.card-bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--timeline-accent);
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Image */
+.card-image {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    border-left: 1px solid #F3F4F6;
+    min-height: 100%;
+}
+
+/* Header Text - reusing dark classes but making them light */
+.section-title-dark {
+    color: #111;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-family: var(--font-heading);
+}
+
+.section-subtitle-dark {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+/* Button */
+.view-all-btn-dark {
+    color: #111;
+    border: 2px solid #E5E7EB;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.view-all-btn-dark:hover {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+    box-shadow: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .timeline-card {
+        flex-direction: column;
+    }
+
+    .card-image {
+        height: 150px;
+        border-left: none;
+        border-bottom: 1px solid #E5E7EB;
+        order: -1;
+    }
+
+    .timeline-dark {
+        padding-left: 20px;
+        /* Reduced left padding */
+    }
+
+    .timeline-dark::before {
+        left: 9px;
+    }
+
+    .timeline-logo {
+        left: -11px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .timeline-logo img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .timeline-card {
+        margin-left: 30px;
+    }
+}
