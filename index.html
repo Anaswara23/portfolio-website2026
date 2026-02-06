@@ -22,15 +22,16 @@
     <div class="cursor-outline"></div>
 
     <nav class="glass-nav">
+        <div class="nav-slider"></div>
         <!-- Desktop Links -->
         <ul class="nav-links">
             <li><a href="#" class="nav-link active">Home</a></li>
-            <li><a href="#experience" class="nav-link">Experience</a></li>
             <li><a href="#projects" class="nav-link">Projects</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
             <li><a href="#" class="nav-link">Resume</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
+
         </ul>
         <div class="nav-divider"></div>
         <button class="theme-toggle" aria-label="Toggle Dark Mode">
@@ -99,9 +100,9 @@
         </div>
         <ul class="mobile-nav-links">
             <li><a href="#" class="mobile-nav-link active">Home</a></li>
-            <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
             <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
-            <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+            <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
+            <li><a href="#highlights" class="mobile-nav-link">Highlights</a></li>
             <li><a href="#about" class="mobile-nav-link">About</a></li>
             <li><a href="#" class="mobile-nav-link">Resume</a></li>
             <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
@@ -113,14 +114,14 @@
         <section class="hero-container">
             <!-- Left Side: Typography -->
             <div class="hero-left">
-                <div class="status-pill">
+                <!-- <div class="status-pill">
                     <span class="status-dot"></span>
                     Available for work
-                </div>
+                </div> -->
 
                 <h1 class="hero-title">
                     Hi,<br>
-                    <span>I'm Anaswara</span>
+                    <span>I'm Anaswara!</span>
                 </h1>
 
                 <p class="hero-subtitle">
@@ -141,6 +142,8 @@
                     </div>
 
                     <div class="mini-mockup">
+                        <img src="GDG Event.jpg" alt="GDG Hackathon Win" class="mockup-img"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                         <div class="mockup-overlay">
                             <span>🏆 Hackathon Winner</span>
                         </div>
@@ -429,7 +432,7 @@
 
 
         <!-- Experience Summary Section (Dark Redesign) -->
-        <section class="exp-section">
+        <section class="exp-section" id="experience">
             <div class="exp-header">
                 <h2 class="exp-title">Work<br>Experience</h2>
             </div>
@@ -979,8 +982,14 @@
                         </div>
                     </div>
 
-                    <form class="contact-form" action="#" method="POST">
-                        <!-- Add real action/script later -->
+                    <form class="contact-form" action="https://formspree.io/f/xbdarqpv" method="POST">
+                        <!-- 
+                            NOTE: To make this work, go to https://formspree.io/
+                            1. Register/Login
+                            2. Create a new form
+                            3. Copy the "Endpoint" URL and paste it above in action="..."
+                        -->
+                        <input type="hidden" name="_subject" value="New Contact from Portfolio Website">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" placeholder="John Doe" required>

@@ -25,7 +25,9 @@
 }
 
 body {
-    background-color: var(--bg-color);
+    background: radial-gradient(circle at 70% 0%, #c6bdf7da, #FFFFFF 80%);
+    /* Soft purple spotlight */
+    background-attachment: fixed;
     color: var(--text-main);
     font-family: var(--font-body);
     overflow-x: hidden;
@@ -73,6 +75,8 @@ body {
     margin: 0;
     padding: 0;
     align-items: center;
+    position: relative;
+    z-index: 10;
 }
 
 .nav-link {
@@ -83,19 +87,44 @@ body {
     font-weight: 500;
     padding: 8px 16px;
     border-radius: 100px;
-    transition: all 0.2s;
+    transition: color 0.2s;
+    position: relative;
+    z-index: 10;
 }
 
 .nav-link:hover {
     color: #0F172A;
 }
 
-/* Active State (Home Pill) */
+/* Active State (Text Color Only) */
 .nav-link.active {
-    background: #E2E8F0;
-    /* Light gray pill */
     color: #0F172A;
     font-weight: 600;
+    background: transparent;
+    /* Remove static bg */
+}
+
+/* Sliding Pill indicator */
+.nav-slider {
+    position: absolute;
+    height: 36px;
+    /* Approx height of nav item */
+    background: #E2E8F0;
+    /* Light gray pill */
+    border-radius: 100px;
+    z-index: 1;
+    /* Behind text */
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 0;
+    /* Hidden initially until JS sets it */
+    pointer-events: none;
+    left: 0;
+}
+
+/* Dark Mode Slider */
+body.dark-mode .nav-slider {
+    background: rgba(255, 255, 255, 0.2);
+    /* Increased visibility */
 }
 
 /* Divider */
@@ -165,6 +194,15 @@ body.dark-mode .theme-toggle {
     color: #94A3B8;
 }
 
+/* User requested yellow sun in dark mode */
+body.dark-mode .sun-icon,
+body.dark-mode .sun-icon-mobile {
+    color: #fff;
+    /* Sunlight Yellow */
+    filter: drop-shadow(0 0 5px rgba(253, 184, 19, 0.5));
+    /* Subtle glow */
+}
+
 body.dark-mode .theme-toggle:hover {
     color: #F8FAFC;
     background: #334155;
@@ -183,10 +221,10 @@ body.dark-mode .theme-toggle:hover {
 /* Mobile Menu Overlay */
 .mobile-menu-overlay {
     position: fixed;
-    top: 16px;
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
+    top: 20px;
+    left: 70px;
+    right: 20px;
+    bottom: 60px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 244, 255, 0.95));
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -312,7 +350,7 @@ body.dark-mode .mobile-logo {
 }
 
 body.dark-mode .mobile-nav-link {
-    color: #94A3B8;
+    color: #8da1bc;
 }
 
 body.dark-mode .mobile-nav-link.active,
@@ -1568,8 +1606,8 @@ body.dark-mode .mobile-toggle {
     align-items: center;
     gap: 8px;
     padding: 12px 32px;
+    color: #000;
     background: #fff;
-    color: #111;
     font-family: var(--font-body);
     font-weight: 500;
     font-size: 1rem;
@@ -2013,13 +2051,13 @@ body:hover .cursor-dot {
     .timeline-icon {
         left: -45px;
         /* relative to content start */
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
     }
 
     .timeline-icon img {
-        width: 20px;
-        height: 20px;
+        width: 50px;
+        height: 50px;
     }
 
     .timeline-content-wrapper {
@@ -2041,9 +2079,12 @@ body:hover .cursor-dot {
 /* BLOGS SECTION */
 .blogs-section {
     max-width: 1400px;
-    margin: 120px auto 160px;
-    /* Extra bottom margin */
+    /* Reduced from 1600px to fit standard container */
+    margin: 80px auto 100px;
     padding: 0 40px;
+    /* Increased padding to prevent edge touching */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .blogs-header {
@@ -2075,7 +2116,7 @@ body:hover .cursor-dot {
 }
 
 .blog-image-wrapper {
-    height: 240px;
+    height: 250px;
     overflow: hidden;
     position: relative;
     background: #F3F4F6;
@@ -2150,7 +2191,7 @@ body:hover .cursor-dot {
     }
 
     .blogs-section {
-        margin: 80px auto;
+        margin: 60px auto;
         padding: 0 20px;
     }
 }
@@ -2689,17 +2730,22 @@ body.dark-mode li,
 body.dark-mode span {
     color: #e5e5e5;
 }
+
 /* --- Dark Mode Harmonization (Audit Fixes) --- */
 
 /* 1. Navbar Visibility */
 body.dark-mode .nav-link {
-    color: #e2e8f0; /* Lighter text for nav */
+    color: #e2e8f0;
+    /* Lighter text for nav */
 }
+
 body.dark-mode .nav-link:hover {
     color: #fff;
 }
+
 body.dark-mode .glass-nav {
-    background: rgba(30, 41, 59, 0.7); /* Slightly more transparent to let gradient show */
+    background: rgba(30, 41, 59, 0.7);
+    /* Slightly more transparent to let gradient show */
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -2710,7 +2756,7 @@ body.dark-mode .blog-card,
 body.dark-mode .highlight-card,
 body.dark-mode .service-card,
 body.dark-mode .bento-card {
-    background: rgba(255, 255, 255, 0.03) !important;
+    background: rgba(255, 255, 255, 0.01) !important;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
@@ -2727,22 +2773,29 @@ body.dark-mode .project-desc,
 body.dark-mode .blog-content p,
 body.dark-mode .highlight-sub,
 body.dark-mode .service-card p {
-    color: #cbd5e1 !important; /* Light slate for description */
+    color: #cbd5e1 !important;
+    /* Light slate for description */
 }
 
 /* 4. Timeline / Work Experience */
 body.dark-mode .timeline-content {
-    background: rgba(255, 255, 255, 0.03); /* Glass container for timeline items */
+    background: rgba(255, 255, 255, 0.03);
+    /* Glass container for timeline items */
     border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 20px;
-    border-radius: 16px; 
+    border-radius: 16px;
 }
+
 body.dark-mode .timeline-date {
-    color: #a5b4fc; /* Soft purple for dates */
+    color: #a5b4fc;
+    /* Soft purple for dates */
 }
+
 body.dark-mode .timeline-content h4 span {
-    color: #94a3b8; /* Muted company name */
+    color: #94a3b8;
+    /* Muted company name */
 }
+
 body.dark-mode .timeline-content ul li {
     color: #e2e8f0;
 }
@@ -2757,26 +2810,151 @@ body.dark-mode .mobile-menu-overlay {
 /* User requested "Black Gradient" for Project, Experience, Blogs, Highlights, Testimonial, Contact, Navbar */
 
 body.dark-mode .project-card,
-body.dark-mode .timeline-content,
 body.dark-mode .blog-card,
 body.dark-mode .highlight-card,
 body.dark-mode .testimonial-wrapper,
-body.dark-mode .contact-container,
-body.dark-mode .contact-form,
-body.dark-mode .glass-nav {
+body.dark-mode .contact-container {
     background: linear-gradient(180deg, rgba(40, 40, 43, 0.95) 0%, rgba(10, 10, 12, 0.98) 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Deep shadow for depth */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Deep shadow for depth */
 }
 
-/* Specific Fix for Experience Timeline Slideshow Overlay if needed */
-body.dark-mode .timeline-content {
+/* Consolidated Dark Mode Timeline Fix */
+body.dark-mode .timeline-content,
+body.dark-mode .timeline-content-wrapper {
     background: linear-gradient(180deg, rgba(40, 40, 43, 0.95) 0%, rgba(10, 10, 12, 0.98) 100%) !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
-/* Ensure Nav is slightly distinct or keeps gradient */
-body.dark-mode .glass-nav {
-    /* Maybe slightly more transparent top? Or stick to the requested gradient */
-    background: linear-gradient(180deg, rgba(40, 40, 43, 0.9) 0%, rgba(10, 10, 12, 0.95) 100%) !important;
-    backdrop-filter: blur(20px);
+/* --- Final Dark Mode Polish --- */
+
+/* 1. Button Visibility Fix */
+body.dark-mode button,
+body.dark-mode .cta-btn,
+body.dark-mode .read-more-btn {
+    color: #000 !important;
+    /* Force black text */
+    font-weight: 600;
+}
+
+body.dark-mode .cta-btn {
+    background-color: #ffffff;
+}
+
+body.dark-mode {
+    background-color: #050505 !important;
+    /* Gradient takes precedence usually, but this acts as fallback for overscroll */
+}
+
+/* 3. Work Experience Border Removal (Hard Override) */
+body.dark-mode .timeline-item,
+body.dark-mode .timeline-content,
+body.dark-mode .timeline-content-wrapper,
+body.dark-mode .experience-card {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body.dark-mode .timeline-slideshow {
+    border: none !important;
+    border-left: none !important;
+    border-bottom: none !important;
+    /* Mobile */
+    border-radius: 0 16px 16px 0;
+    /* Maintain right rounding if needed */
+}
+
+/* If specific inner border exists */
+body.dark-mode .timeline-item::before {
+    background: #333 !important;
+    /* Darken connecting lines */
+}
+
+/* 4. Bento Grid Text Visibility */
+body.dark-mode .bento-card h3,
+body.dark-mode .bento-card p,
+body.dark-mode .bento-card span,
+body.dark-mode .info-header h3,
+body.dark-mode .info-header p {
+    color: #ffffff !important;
+}
+
+body.dark-mode .bento-card .tag-pill,
+body.dark-mode .bento-card .price-pill {
+    color: #4F46E5 !important;
+    /* Keep accent color for pills if background allows, or force black/white */
+    /* If pills are light in dark mode, black text might be better? User said "buttons" text to black. Assuming pills are okay or need check. */
+}
+
+/* 5. Hackathon Winner Shine (Global - Applied to Light & Dark) */
+.mockup-overlay {
+    background: rgba(15, 23, 42, 0.9) !important;
+    /* Dark Navy/Black for contrast in both modes */
+    border: 1px solid rgba(255, 215, 0, 0.3) !important;
+    /* Subtle gold border */
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25) !important;
+    /* Outer gold glow */
+    backdrop-filter: blur(4px);
+}
+
+.mockup-overlay span {
+    color: #FFD700 !important;
+    /* Solid Gold Text */
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    /* Glowing text */
+    -webkit-text-fill-color: initial;
+    background: none;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* 6. View Full Experience Visibility Fix */
+body.dark-mode .view-more-btn,
+body.dark-mode .view-more-btn span,
+body.dark-mode .view-more-btn svg {
+    color: #000 !important;
+    /* Black text on white button */
+    fill: #000 !important;
+    stroke: #000 !important;
+    background: #fff !important;
+    /* Ensure background stays white */
+    border: none !important;
+}
+
+/* Ensure pill background is bright enough in dark mode or text is dark */
+body.dark-mode .tag-pill,
+body.dark-mode .price-pill {
+    background: #EFF6FF !important;
+    /* Keep white-ish background */
+    color: #000 !important;
+    /* Ensure text is readable */
+}
+
+/* 7. Highlights Heading Size Fix */
+.highlights-header .section-title {
+    font-size: 3.5rem !important;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* 8. Increase Timeline Icon Size */
+.timeline-icon {
+    width: 70px !important;
+    height: 70px !important;
+    left: -85px !important;
+    /* Adjust position for larger size */
+}
+
+/* Adjust image inside to fit */
+.timeline-icon img {
+    padding: 3px;
+    /* Add some padding so logo isn't edge-to-edge */
 }
