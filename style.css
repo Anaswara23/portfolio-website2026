@@ -2346,7 +2346,7 @@ body.dark-mode .highlight-sub {
 }
 
 /* --- Custom Cursor --- */
-@media (match-media: (pointer: fine)) {
+@media (pointer: fine) {
     body {
         cursor: none;
         /* Hide default cursor */
