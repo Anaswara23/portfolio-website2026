@@ -2943,18 +2943,106 @@ body.dark-mode .price-pill {
     font-family: var(--font-heading);
     font-weight: 600;
     line-height: 1;
+
 }
 
-/* 8. Increase Timeline Icon Size */
-.timeline-icon {
-    width: 70px !important;
-    height: 70px !important;
-    left: -85px !important;
-    /* Adjust position for larger size */
+/* --- Resume Page Styles --- */
+.resume-container {
+    max-width: 1400px;
+    /* Matched to main container max-width */
+    width: 100%;
+    margin: 0 auto;
+    padding: 140px 40px 80px;
+    /* Matched top padding to projects/experience */
+    /* display: flex; REMOVED to allow normal block flow */
+    /* flex-direction: column; */
+    /* align-items: center; */
 }
 
-/* Adjust image inside to fit */
-.timeline-icon img {
-    padding: 3px;
-    /* Add some padding so logo isn't edge-to-edge */
+.resume-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    /* Standard section spacing */
+    width: 100%;
+}
+
+.resume-title {
+    font-size: 3.5rem;
+    /* Matched to .projects-title */
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--text-primary);
+    margin: 0;
+    /* Remove default margin */
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #090511e3;
+    /* Violet-500 */
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+}
+
+.pdf-viewer {
+    width: 100%;
+    height: 100vh;
+    /* Full viewport height for better reading */
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    background: #fff;
+    /* Ensure PDF background is white */
+    overflow: hidden;
+}
+
+.pdf-viewer object {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+}
+
+/* Dark Mode Overrides */
+body.dark-mode .resume-title {
+    color: #fff;
+}
+
+body.dark-mode .pdf-viewer {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .resume-container {
+        padding: 100px 20px 60px;
+    }
+
+    .resume-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .resume-title {
+        font-size: 2.5rem;
+    }
+
+    .pdf-viewer {
+        height: 500px;
+    }
 }

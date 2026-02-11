@@ -1,8 +1,8 @@
 
 // DOM Elements
 const mobileToggle = document.querySelector('.mobile-toggle');
-const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-const mobileClose = document.querySelector('.mobile-close');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay') || document.createElement('div'); // Fallback
+const mobileClose = document.querySelector('.mobile-close') || document.createElement('button'); // Fallback
 const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 const themeToggle = document.querySelector('.theme-toggle');
 const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
@@ -35,35 +35,36 @@ mobileNavLinks.forEach(link => {
 
 
 // --- Dark Mode Logic ---
-// Check Local Storage
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    enableDarkMode();
+
+// Helper to safely toggle display
+function safeDisplay(element, displayValue) {
+    if (element) element.style.display = displayValue;
 }
 
 function enableDarkMode() {
     body.classList.add('dark-mode');
     localStorage.setItem('theme', 'dark');
     
-    // Toggle Icons
-    sunIcon.style.display = 'block'; // In this design, sun implies "switch to light"
-    moonIcon.style.display = 'none';
+    // Desktop Icons
+    safeDisplay(sunIcon, 'block');
+    safeDisplay(moonIcon, 'none');
 
-    // Update Mobile Icons too
-    sunIconMobile.style.display = 'block';
-    moonIconMobile.style.display = 'none';
+    // Mobile Icons
+    safeDisplay(sunIconMobile, 'block');
+    safeDisplay(moonIconMobile, 'none');
 }
 
 function disableDarkMode() {
     body.classList.remove('dark-mode');
     localStorage.setItem('theme', 'light');
+    
+    // Desktop Icons
+    safeDisplay(sunIcon, 'none');
+    safeDisplay(moonIcon, 'block');
 
-    // Toggle Icons
-    sunIcon.style.display = 'none';
-    moonIcon.style.display = 'block';
-
-    sunIconMobile.style.display = 'none';
-    moonIconMobile.style.display = 'block';
+    // Mobile Icons
+    safeDisplay(sunIconMobile, 'none');
+    safeDisplay(moonIconMobile, 'block');
 }
 
 function toggleTheme() {
@@ -74,8 +75,18 @@ function toggleTheme() {
     }
 }
 
-themeToggle.addEventListener('click', toggleTheme);
-mobileThemeToggle.addEventListener('click', toggleTheme);
+// Check local storage on load
+if (localStorage.getItem('theme') === 'dark') {
+    enableDarkMode();
+}
+
+// Event Listeners (Safe Checks)
+if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+}
+if (mobileThemeToggle) {
+    mobileThemeToggle.addEventListener('click', toggleTheme);
+}
 
 
 // --- Scroll Scrolled Nav State ---
@@ -127,19 +138,24 @@ window.onload = () => {
 };
 
 /* --- Carousel Logic --- */
-const track = document.querySelector('.carousel-track');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
+/* --- Carousel Logic (Multi-Instance) --- */
+const carousels = document.querySelectorAll('.carousel-wrapper');
 
-if (track && prevBtn && nextBtn) {
-    prevBtn.addEventListener('click', () => {
-        track.parentElement.scrollBy({ left: -360, behavior: 'smooth' });
-    });
+carousels.forEach(carousel => {
+    const container = carousel.querySelector('.carousel-container'); // Scrollable area
+    const prevBtn = carousel.querySelector('.prev-btn');
+    const nextBtn = carousel.querySelector('.next-btn');
 
-    nextBtn.addEventListener('click', () => {
-        track.parentElement.scrollBy({ left: 360, behavior: 'smooth' });
-    });
-}
+    if (container && prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            container.scrollBy({ left: -360, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            container.scrollBy({ left: 360, behavior: 'smooth' });
+        });
+    }
+});
 
 /* --- Timeline Slideshow Logic --- */
 const timelineItems = document.querySelectorAll('.timeline-item');
