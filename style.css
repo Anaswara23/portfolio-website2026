@@ -2983,7 +2983,7 @@ body.dark-mode .price-pill {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: #090511e3;
+    background: #150b29e3;
     /* Violet-500 */
     color: #fff;
     padding: 12px 24px;
@@ -3045,4 +3045,10 @@ body.dark-mode .pdf-viewer {
     .pdf-viewer {
         height: 500px;
     }
+}
+
+/* 8. Hackathon Badge Dark Mode Fix */
+body.dark-mode .overlay-badge {
+    color: #000 !important;
+    font-weight: 700;
 }
