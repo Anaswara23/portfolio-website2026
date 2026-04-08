@@ -1,92 +1,27 @@
 
 // DOM Elements
 const mobileToggle = document.querySelector('.mobile-toggle');
-const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay') || document.createElement('div'); // Fallback
-const mobileClose = document.querySelector('.mobile-close') || document.createElement('button'); // Fallback
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay') || document.createElement('div');
+const mobileClose = document.querySelector('.mobile-close') || document.createElement('button');
 const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-const themeToggle = document.querySelector('.theme-toggle');
-const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
-const body = document.body;
-
-// Icons
-const sunIcon = document.querySelector('.sun-icon');
-const moonIcon = document.querySelector('.moon-icon');
-const sunIconMobile = document.querySelector('.sun-icon-mobile');
-const moonIconMobile = document.querySelector('.moon-icon-mobile');
 
 // --- Mobile Menu Logic ---
 function openMobileMenu() {
     mobileMenuOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Lock scroll
+    document.body.style.overflow = 'hidden';
 }
 
 function closeMobileMenu() {
     mobileMenuOverlay.classList.remove('active');
-    document.body.style.overflow = ''; // Unlock scroll
+    document.body.style.overflow = '';
 }
 
 mobileToggle.addEventListener('click', openMobileMenu);
 mobileClose.addEventListener('click', closeMobileMenu);
 
-// Close menu when clicking a link
 mobileNavLinks.forEach(link => {
     link.addEventListener('click', closeMobileMenu);
 });
-
-
-// --- Dark Mode Logic ---
-
-// Helper to safely toggle display
-function safeDisplay(element, displayValue) {
-    if (element) element.style.display = displayValue;
-}
-
-function enableDarkMode() {
-    body.classList.add('dark-mode');
-    localStorage.setItem('theme', 'dark');
-    
-    // Desktop Icons
-    safeDisplay(sunIcon, 'block');
-    safeDisplay(moonIcon, 'none');
-
-    // Mobile Icons
-    safeDisplay(sunIconMobile, 'block');
-    safeDisplay(moonIconMobile, 'none');
-}
-
-function disableDarkMode() {
-    body.classList.remove('dark-mode');
-    localStorage.setItem('theme', 'light');
-    
-    // Desktop Icons
-    safeDisplay(sunIcon, 'none');
-    safeDisplay(moonIcon, 'block');
-
-    // Mobile Icons
-    safeDisplay(sunIconMobile, 'none');
-    safeDisplay(moonIconMobile, 'block');
-}
-
-function toggleTheme() {
-    if (body.classList.contains('dark-mode')) {
-        disableDarkMode();
-    } else {
-        enableDarkMode();
-    }
-}
-
-// Check local storage on load
-if (localStorage.getItem('theme') === 'dark') {
-    enableDarkMode();
-}
-
-// Event Listeners (Safe Checks)
-if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
-}
-if (mobileThemeToggle) {
-    mobileThemeToggle.addEventListener('click', toggleTheme);
-}
 
 
 // --- Scroll Scrolled Nav State ---

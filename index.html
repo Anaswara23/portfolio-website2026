@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="darkit.css">
 </head>
 
-<body class="light-mode">
+<body>
     <!-- Custom Cursor Elements -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
@@ -33,26 +33,6 @@
             <li><a href="#contact" class="nav-link">Contact</a></li>
 
         </ul>
-        <div class="nav-divider"></div>
-        <button class="theme-toggle" aria-label="Toggle Dark Mode">
-            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                style="display:none;">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </button>
         <!-- Mobile Toggle (Hamburger) -->
         <button class="mobile-toggle" aria-label="Open Menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -69,26 +49,6 @@
         <div class="mobile-menu-header">
             <span class="mobile-logo">AR</span>
             <div class="mobile-controls">
-                <button class="mobile-theme-toggle" aria-label="Toggle Dark Mode">
-                    <svg class="sun-icon-mobile" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                    <svg class="moon-icon-mobile" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" style="display:none;">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
                 <button class="mobile-close" aria-label="Close Menu">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -112,8 +72,36 @@
     <main>
         <!-- Hero Section - Reference Match -->
         <section class="hero-container">
-            <!-- Left Side: Typography -->
+
+            <!-- ══ Mobile Hero (≤768px only) ══ -->
+            <div class="hero-m">
+                <div class="hero-m-photo">
+                    <img src="profile_pic.jpg" alt="Anaswara Raghuthaman">
+                    <div class="hero-m-chip hero-m-chip--location">📍 Washington, DC</div>
+                    <div class="hero-m-chip hero-m-chip--award">🏆 3× Hackathon Winner</div>
+                </div>
+                <div class="hero-m-body">
+                    <div class="hero-m-eyebrow">
+                        <span class="hero-m-pulse"></span> Available May 2026
+                    </div>
+                    <h1 class="hero-m-title">Hi,<br><span>I'm Anaswara.</span></h1>
+                    <p class="hero-m-sub">I build AI that wins hackathons, gets demoed at IDB HQ, and ships to real users.</p>
+                    <div class="hero-m-actions">
+                        <button class="cta-btn hero-m-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Me</button>
+                        <a href="#projects" class="hero-m-scroll" aria-label="Scroll down">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left Side: Typography (desktop) -->
             <div class="hero-left">
+                <!-- Mobile-only avatar -->
+                <div class="hero-mobile-avatar">
+                    <img src="Me.jpeg" alt="Anaswara">
+                </div>
+
                 <!-- <div class="status-pill">
                     <span class="status-dot"></span>
                     Available for work
@@ -125,8 +113,8 @@
                 </h1>
 
                 <p class="hero-subtitle">
-                    I build AI-driven software and data systems, blending full-stack engineering with machine learning
-                    and real-world impact.
+                    I love building AI that actually matters. My projects have won national hackathons,
+                    been demoed at IDB Headquarters in Washington D.C., and shipped to real users.
                 </p>
 
                 <button class="cta-btn">Contact Me</button>
@@ -145,7 +133,7 @@
                         <img src="GDG Event.jpg" alt="GDG Hackathon Win" class="mockup-img"
                             style="width: 100%; height: 100%; object-fit: cover;">
                         <div class="mockup-overlay">
-                            <span>🏆 Hackathon Winner</span>
+                            <span>🏆 3× Hackathon Winner</span>
                         </div>
                     </div>
 
@@ -249,7 +237,45 @@
             </div>
         </section>
 
+        <!-- ═══ The Story So Far ═══ -->
+        <section class="chapters-section">
+            <div class="chapters-inner">
+                <p class="chapters-eyebrow">The Story So Far</p>
+                <div class="chapters-grid">
 
+                    <div class="chapter-card">
+                        <span class="chapter-number-bg">01</span>
+                        <div class="chapter-meta">
+                            <span class="chapter-tag">NLP · BERT · IDB</span>
+                            <span class="chapter-result">Presented @ IDB HQ, Washington D.C.</span>
+                        </div>
+                        <h3 class="chapter-headline">Built TextGuard.<br>Got a call from Washington.</h3>
+                        <p class="chapter-body">A BERT-based risk detection engine for Inter-American Development Bank project documents. The team was invited to demo it live at IDB Headquarters in Washington D.C.</p>
+                    </div>
+
+                    <div class="chapter-card chapter-card--featured">
+                        <span class="chapter-number-bg">02</span>
+                        <div class="chapter-meta">
+                            <span class="chapter-tag">AI · Databricks · Humanitarian</span>
+                            <span class="chapter-result">🏆 Hackathon Winner</span>
+                        </div>
+                        <h3 class="chapter-headline">BlindSpot replaced<br>media bias with math.</h3>
+                        <p class="chapter-body">A global humanitarian intelligence platform that tells sovereign wealth funds exactly where to deploy capital, right before a crisis peaks. PCA-based severity scores, AI-powered allocation, built in a weekend and we won!</p>
+                    </div>
+
+                    <div class="chapter-card">
+                        <span class="chapter-number-bg">03</span>
+                        <div class="chapter-meta">
+                            <span class="chapter-tag">Flutter · AI · UMD</span>
+                            <span class="chapter-result">🏆 Technica ’25 Winner</span>
+                        </div>
+                        <h3 class="chapter-headline">BarterBrain. Students<br>trading smarter with AI.</h3>
+                        <p class="chapter-body">An AI-driven barter platform for college students with smart item valuation and negotiation coaching. Beat hundreds of teams at the University of Maryland’s national hackathon.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
 
         <!-- Projects / Selected Work Section -->
         <section class="projects-section" id="projects">
@@ -276,6 +302,33 @@
 
                 <div class="carousel-container">
                     <div class="carousel-track">
+                        <!-- BlindSpot -->
+                        <article class="project-card project-card--spotlight" data-category="ai">
+                            <div class="project-image-container">
+                                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop" alt="BlindSpot Global AI Platform" class="project-img">
+                                <span class="overlay-badge">🏆 Hackathon Winner</span>
+                            </div>
+                            <div class="project-content">
+                                <span class="project-category">Humanitarian AI · Full Stack</span>
+                                <h3 class="project-title">BlindSpot</h3>
+                                <p class="project-desc">
+                                    A global AI capital allocation engine that tells sovereign wealth funds where to deploy aid, right before a crisis peaks. Crisis severity scored via PCA across all countries and visualized on an interactive orthographic globe.
+                                </p>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Databricks</span>
+                                    <span class="tech-tag">Gemini 2.5</span>
+                                    <span class="tech-tag">Plotly</span>
+                                    <span class="tech-tag">Streamlit</span>
+                                    <span class="tech-tag">PCA</span>
+                                </div>
+                                <a href="#" class="project-github-link" aria-label="View Source Code">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </article>
+
                         <!-- BarterBrain -->
                         <article class="project-card" data-category="ai app">
                             <div class="project-image-container">
@@ -318,8 +371,7 @@
                                 <span class="project-category">NLP & Governance</span>
                                 <h3 class="project-title">Text Mining for IDB</h3>
                                 <p class="project-desc">
-                                    Automated risk flagging in project documents using BERT transformers and topic
-                                    modeling. Sponsored by IDB.
+                                    A BERT-based risk detection engine built for Inter-American Development Bank project documents, developed for IDB and presented live at IDB Headquarters in Washington D.C.
                                 </p>
                                 <div class="tech-stack">
                                     <span class="tech-tag">BERT</span>
@@ -342,7 +394,7 @@
                         <!-- Pawfect -->
                         <article class="project-card" data-category="app">
                             <div class="project-image-container">
-                                <img src="https://cdn.dribbble.com/userupload/16584168/file/original-6d07ad4c58edb35144b9ca4d10050146.jpg?resize=752x&vertical=center"
+                                <img src="Pawfect.png"
                                     alt="Pawfect App" class="project-img">
                             </div>
                             <div class="project-content">
@@ -596,7 +648,6 @@
                         <div class="timeline-slideshow">
                             <div class="slideshow-image active"
                                 style="background-image: url('GW\ LAW\ IT\ Day\ 1.png');"></div>
-                            <div class="slideshow-image" style="background-image: url('GW\ IT\ Fix.jpeg');"></div>
                             <div class="slideshow-image" style="background-image: url('GW\ IT\ Mess.png');"></div>
                             <div class="slideshow-image" style="background-image: url('GW\ LAW\ IT\ Day\ 1.png');">
                             </div>
@@ -943,6 +994,18 @@
                         <h3>Awards & Recognition</h3>
                     </div>
                     <ul class="highlight-list">
+                        <li>
+                            <div class="highlight-item">
+                                <strong>Winner, BlindSpot Global AI Hackathon</strong>
+                                <span class="highlight-sub">Google Developer Group · GWU</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="highlight-item highlight-item--accent">
+                                <strong>Demo Presented at IDB Headquarters</strong>
+                                <span class="highlight-sub">Inter-American Development Bank · Washington D.C.</span>
+                            </div>
+                        </li>
                         <li>
                             <div class="highlight-item">
                                 <strong>Winner, Technica National Hackathon 2025</strong>
